@@ -27,15 +27,12 @@ def rutina(file_path):
         clave = usr[0]
         rol = usr[4]
     
-        print(f"--USR:----------{clave}-------------")
-
         query_perfiles = "SELECT perfil1,perfil2,perfil3 FROM keplersc_mig_core.usuarios_perfiles where clave=%s " 
         cursor.execute(query_perfiles, (clave,))
         perfiles = cursor.fetchall()
         
         if len(perfiles) > 0:
             for perfil in perfiles[0]:
-                print(f"-------PERFIL:-------{perfil}-------------")
 
                 query_opciones = "SELECT c2 FROM keplersc_mig.kdopcionesperfil where c1=%s " 
                 cursor.execute(query_opciones, (perfil,))
@@ -66,16 +63,13 @@ def rutina(file_path):
 
                                                 if rol not in opciones_col and rol + '"' not in opciones_col:
                                                     
-                                                    print(f'columna antes: {col}')
                                                     print(f'linea antes: {linea}')
                                                     col_nueva = col[:-1] + f',{rol}"'
-                                                    print(f'columna nueva: {col_nueva}')
                                                     linea[x] = col_nueva
-                                                    print(f'linea nueva: {linea}')
+                                                    print(f'linea despues: {linea}')
                                                     linea_nueva = " ".join(linea)
                                                     if identacion > 0 :
                                                         linea_nueva = " " * identacion + linea_nueva
-                                                    print(linea_nueva)
 
                                                     #guarda cambios en el archivo
                                                     lineas[i] = linea_nueva + "\n"
