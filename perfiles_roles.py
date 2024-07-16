@@ -2,6 +2,8 @@ import sys
 import psycopg2
 
 
+#Antes de ejecutar rutina quitar de .DAT las primeras lineas, dejar apartir de primer perfil a procesar
+
 
 #loc celaya
 conn = psycopg2.connect(
